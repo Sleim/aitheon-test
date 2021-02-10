@@ -44,7 +44,7 @@ export default {
     .posts-list__item {
       background: #dadada;
       padding: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -54,7 +54,7 @@ export default {
       }
 
       .title {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
       }
 
       .eye {
