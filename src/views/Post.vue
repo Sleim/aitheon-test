@@ -1,31 +1,37 @@
 <template>
-  <div class="home">
-    <HomeTable :list="postsList"/>
+  <div class="post">
+    <h1 class="post__title">{{ itemInfo.title }}</h1>
+    <p class="post__body">{{ itemInfo.body }}</p>
+    <div class="post__info">Item id = {{ itemInfo.id }}</div>
+    <div class="post__info">Item user id = {{ itemInfo.userId }}</div>
   </div>
 </template>
 
 <script>
 import {postsListGet} from "@/api/posts";
-import HomeTable from '@/components/HomeTable.vue'
 
 export default {
-  name: 'Home',
-  components: {
-    HomeTable
-  },
+  name: "Post",
   created() {
-    // In real project i would make a call to the backend for a array of posts
-    // this.getList()
+    // When going to a post page, whe make a call to a backend with Id of item as a prop
+    // this.getItem()
+    // But for now I just gonna find it by find method
+    this.getItemFromData()
   },
   methods: {
-    getList() {
-      postsListGet().then((answer) => {
-        this.postsList = answer.data.data
+    getItem() {
+      postsListGet(this.itemId).then((answer) => {
+        this.itemInfo = answer.data.data
       })
+    },
+    getItemFromData() {
+      this.itemInfo = this.postsList.find(item => parseInt(item.id) === parseInt(this.itemId))
     }
   },
   data() {
     return {
+      itemId: this.$route.params.id,
+      itemInfo: {},
       postsList: [
         {
           "userId": 1,
@@ -182,3 +188,23 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="scss">
+  .post {
+    padding: 100px 50px;
+
+    &__title {
+      color: grey;
+      margin-bottom: 25px;
+    }
+
+    &__body {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    &__info {
+      margin-bottom: 10px;
+    }
+  }
+</style>
