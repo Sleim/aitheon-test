@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <HomeTable :list="postsList"/>
+    <HomeList :list="postsList"/>
   </div>
 </template>
 
 <script>
 import {postsListGet} from "@/api/posts";
-import HomeTable from '@/components/HomeTable.vue'
+import HomeList from '@/components/HomeList.vue'
 
 export default {
   name: 'Home',
   components: {
-    HomeTable
+    HomeList
   },
   created() {
     // In real project i would make a call to the backend for a array of posts

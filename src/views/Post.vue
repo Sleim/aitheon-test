@@ -1,9 +1,14 @@
 <template>
-  <div class="post">
-    <h1 class="post__title">{{ itemInfo.title }}</h1>
-    <p class="post__body">{{ itemInfo.body }}</p>
-    <div class="post__info">Item id = {{ itemInfo.id }}</div>
-    <div class="post__info">Item user id = {{ itemInfo.userId }}</div>
+  <div class="page-holder">
+    <router-link class="back-link" tag="a" title='Open post' :to="{ path: `/`}">
+      Go back to main
+    </router-link>
+    <div class="post">
+      <h1 class="post__title">{{ itemInfo.title }}</h1>
+      <p class="post__body">{{ itemInfo.body }}</p>
+      <div class="post__info">Item id = {{ itemInfo.id }}</div>
+      <div class="post__info">Item user id = {{ itemInfo.userId }}</div>
+    </div>
   </div>
 </template>
 
@@ -190,9 +195,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .post {
+  .page-holder {
     padding: 100px 50px;
-
+  }
+  .back-link {
+    color: inherit;
+    display: block;
+    margin-bottom: 25px;
+  }
+  .post {
     &__title {
       color: grey;
       margin-bottom: 25px;
